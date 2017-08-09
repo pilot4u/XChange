@@ -32,7 +32,7 @@ public class BitfinexTradeDataJSONTest {
     assertEquals("btcusd", response.getSymbol());
     assertEquals("bitfinex", response.getExchange());
     assertEquals(new BigDecimal("900.0"), response.getPrice());
-    assertEquals(new BigDecimal("0.0"), response.getAvgExecutionPrice());
+    assertEquals(new BigDecimal("0.0"), response.getAveragePrice());
     assertEquals("sell", response.getSide());
     assertEquals("exchange limit", response.getType());
     assertEquals(new BigDecimal("1387061558.610016778"), response.getTimestamp());
@@ -54,10 +54,10 @@ public class BitfinexTradeDataJSONTest {
     assertEquals("btcusd", response.getSymbol());
     assertNull(response.getExchange());
     assertEquals(new BigDecimal("900.0"), response.getPrice());
-    assertEquals(new BigDecimal("0.0"), response.getAvgExecutionPrice());
+    assertEquals(new BigDecimal("0.0"), response.getAveragePrice());
     assertEquals("sell", response.getSide());
     assertEquals("exchange limit", response.getOrderType());
-    assertEquals(1387061342, response.getTimestamp().getTime());
+    assertEquals(1501858262350L, response.getTimestamp().getTime());
     assertFalse(response.isLive());
     assertTrue(response.isCancelled());
     assertFalse(response.getWasForced());
@@ -76,10 +76,10 @@ public class BitfinexTradeDataJSONTest {
     assertEquals("btcusd", response.getSymbol());
     assertNull(response.getExchange());
     assertEquals(new BigDecimal("900.0"), response.getPrice());
-    assertEquals(new BigDecimal("0.0"), response.getAvgExecutionPrice());
+    assertEquals(new BigDecimal("0.0"), response.getAveragePrice());
     assertEquals("sell", response.getSide());
     assertEquals("exchange limit", response.getOrderType());
-    assertEquals(1387061342, response.getTimestamp().getTime());
+    assertEquals(1501858262350L, response.getTimestamp().getTime());
     assertTrue(response.isLive());
     assertFalse(response.isCancelled());
     assertFalse(response.getWasForced());

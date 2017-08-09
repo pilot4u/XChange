@@ -285,7 +285,7 @@ public final class BitfinexAdapters {
     return new UserTrades(pastTrades, TradeSortType.SortByTimestamp);
   }
 
-  private static Date convertBigDecimalTimestampToDate(BigDecimal timestamp) {
+  public static Date convertBigDecimalTimestampToDate(BigDecimal timestamp) {
 
     BigDecimal timestampInMillis = timestamp.multiply(new BigDecimal("1000"));
     return new Date(timestampInMillis.longValue());

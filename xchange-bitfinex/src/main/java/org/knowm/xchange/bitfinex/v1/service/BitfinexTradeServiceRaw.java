@@ -229,7 +229,7 @@ public class BitfinexTradeServiceRaw extends BitfinexBaseService {
 
     try {
       BitfinexOrderStatusResponse orderStatus = bitfinex.orderStatus(apiKey, payloadCreator, signatureCreator,
-          new BitfinexOrderStatusRequest(String.valueOf(exchange.getNonceFactory().createValue()), Integer.valueOf(orderId)));
+          new BitfinexOrderStatusRequest(String.valueOf(exchange.getNonceFactory().createValue()), Long.valueOf(orderId)));
       return orderStatus;
     } catch (BitfinexException e) {
       throw new ExchangeException(e);

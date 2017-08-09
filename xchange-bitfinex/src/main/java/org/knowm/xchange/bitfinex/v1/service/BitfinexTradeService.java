@@ -190,4 +190,11 @@ public class BitfinexTradeService extends BitfinexTradeServiceRaw implements Tra
 	  return result;
   }
 
+@Override
+public boolean cancelOrder(CancelOrderParams arg0) throws ExchangeException, NotAvailableFromExchangeException,
+		NotYetImplementedForExchangeException, IOException {
+	// TODO Auto-generated method stub
+	return false;
+}
+
 }

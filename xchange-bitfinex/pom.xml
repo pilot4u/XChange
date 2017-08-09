@@ -8,7 +8,9 @@
 		<version>4.2.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>xchange-bitfinex</artifactId>
+	<groupId>org.knowm.xchange.module</groupId>
+	<artifactId>xchange-bitfinex.module</artifactId>
+	<version>4.2.1</version>
 
 	<name>XChange BitFinex</name>
 	<description>XChange implementation for the BitFinex Exchange</description>
@@ -31,5 +33,28 @@
 		</dependency>
 
 	</dependencies>
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.knowm.xchange.module</groupId>
+					<artifactId>xchange-bitfinex</artifactId>
+					<version>4.2.1</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<!-- | Get more detail with: mvn releaser:help -Ddetail=true -Dgoal=release -->
+			<plugin>
+				<groupId>org.knowm.xchange.module</groupId>
+				<artifactId>xchange-bitfinex</artifactId>
+				<configuration>
+					<releaseGoals>
+						<releaseGoal>deploy</releaseGoal>
+					</releaseGoals>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>

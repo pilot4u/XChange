@@ -16,6 +16,7 @@ import org.knowm.xchange.exceptions.NotAvailableFromExchangeException;
 import org.knowm.xchange.exceptions.NotYetImplementedForExchangeException;
 import org.knowm.xchange.service.account.AccountService;
 import org.knowm.xchange.service.trade.params.TradeHistoryParams;
+import org.knowm.xchange.service.trade.params.WithdrawFundsParams;
 
 public class BitfinexAccountService extends BitfinexAccountServiceRaw implements AccountService {
 
@@ -72,6 +73,13 @@ public TradeHistoryParams createFundingHistoryParams() {
 @Override
 public List<FundingRecord> getFundingHistory(TradeHistoryParams params) throws ExchangeException,
 		NotAvailableFromExchangeException, NotYetImplementedForExchangeException, IOException {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+@Override
+public String withdrawFunds(WithdrawFundsParams arg0) throws ExchangeException, NotAvailableFromExchangeException,
+		NotYetImplementedForExchangeException, IOException {
 	// TODO Auto-generated method stub
 	return null;
 }

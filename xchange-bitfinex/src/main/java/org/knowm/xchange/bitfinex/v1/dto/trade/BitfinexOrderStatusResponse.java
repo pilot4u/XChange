@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+import org.knowm.xchange.bitfinex.v1.BitfinexAdapters;
 import org.knowm.xchange.currency.CurrencyPair;
 import org.knowm.xchange.dto.Order;
 
@@ -17,7 +17,7 @@ public class BitfinexOrderStatusResponse extends Order {
 	private final BigDecimal avgExecutionPrice;
 	private final String side;
 	private final String type;
-	private final long timestamp;
+	private final Date timestamp;
 	private final boolean isLive;
 	private final boolean isCancelled;
 	private final boolean wasForced;
@@ -46,18 +46,18 @@ public class BitfinexOrderStatusResponse extends Order {
 	public BitfinexOrderStatusResponse(@JsonProperty("id") String id, @JsonProperty("symbol") String symbol,
 			@JsonProperty("exchange") String exchange, @JsonProperty("price") BigDecimal price,
 			@JsonProperty("avg_execution_price") BigDecimal avgExecutionPrice, @JsonProperty("side") String side,
-			@JsonProperty("type") String type, @JsonProperty("timestamp") long timestamp,
+			@JsonProperty("type") String type, @JsonProperty("timestamp") BigDecimal timestamp,
 			@JsonProperty("is_live") boolean isLive, @JsonProperty("is_cancelled") boolean isCancelled,
 			@JsonProperty("was_forced") boolean wasForced, @JsonProperty("original_amount") BigDecimal originalAmount,
 			@JsonProperty("remaining_amount") BigDecimal remainingAmount,
 			@JsonProperty("executed_amount") BigDecimal executedAmount) {
 
 		super(side == "buy" ? OrderType.BID : OrderType.ASK, originalAmount,
-				new CurrencyPair(symbol.substring(0, 3), symbol.substring(3, 6)), id, new Date(timestamp),
+				new CurrencyPair(symbol.substring(0, 3), symbol.substring(3, 6)), id, BitfinexAdapters.convertBigDecimalTimestampToDate(timestamp),
 				avgExecutionPrice, executedAmount,
-				isCancelled ? OrderStatus.CANCELED
+				executedAmount.equals(originalAmount) ? OrderStatus.FILLED : isCancelled ? OrderStatus.CANCELED
 						: remainingAmount != BigDecimal.ZERO ? OrderStatus.PARTIALLY_FILLED
-								: executedAmount.equals(originalAmount) ? OrderStatus.FILLED : OrderStatus.PENDING_NEW);
+							  : OrderStatus.PENDING_NEW);
 
 		this.id = id;
 		this.symbol = symbol;
@@ -66,7 +66,7 @@ public class BitfinexOrderStatusResponse extends Order {
 		this.avgExecutionPrice = avgExecutionPrice;
 		this.side = side;
 		this.type = type;
-		this.timestamp = timestamp;
+		this.timestamp = BitfinexAdapters.convertBigDecimalTimestampToDate(timestamp);
 		this.isLive = isLive;
 		this.isCancelled = isCancelled;
 		this.wasForced = wasForced;
@@ -132,7 +132,7 @@ public class BitfinexOrderStatusResponse extends Order {
 
 	public Date getTimestamp() {
 
-		return new Date(timestamp);
+		return timestamp;
 	}
 
 	public String getId() {
@@ -145,7 +145,7 @@ public class BitfinexOrderStatusResponse extends Order {
 		return isLive;
 	}
 
-	public BigDecimal getAvgExecutionPrice() {
+	public BigDecimal getAveragePrice() {
 
 		return avgExecutionPrice;
 	}

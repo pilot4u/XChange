@@ -131,7 +131,7 @@ public class BitfinexAdaptersTest {
       BigDecimal originalAmount = new BigDecimal("70");
       BigDecimal remainingAmount = originalAmount.subtract(new BigDecimal(i * 1));
       BigDecimal executedAmount = originalAmount.subtract(remainingAmount);
-      responses[i] = new BitfinexOrderStatusResponse(String.format("%d", i), SYMBOL, EXCHANGE, price, avgExecutionPrice, side, type, timestamp.longValue(), isLive, isCancelled,
+      responses[i] = new BitfinexOrderStatusResponse(String.format("%d", i), SYMBOL, EXCHANGE, price, avgExecutionPrice, side, type, timestamp, isLive, isCancelled,
               wasForced, originalAmount, remainingAmount, executedAmount);
     }
 
